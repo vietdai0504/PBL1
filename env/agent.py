@@ -112,15 +112,15 @@ def train():
     agent = Agent()
     game = SnakeGameAI()
     nums_episode = 300
-    try:
-        model = Linear_QNet(11, 256, 3)
-        model.load_state_dict(torch.load('model/model.pt'))
-        agent.model = model
-        with open("model/record.txt", "r") as f:
-            record = int(f.read())
-        print("Tiếp tục huấn luyện model!!")
-    except FileNotFoundError:
-        print("Không tìm thấy model!! Huấn luyện lại từ đầu!!!")
+    # try:
+    #     model = Linear_QNet(11, 256, 3)
+    #     model.load_state_dict(torch.load('model/model.pt'))
+    #     agent.model = model
+    #     with open("model/record.txt", "r") as f:
+    #         record = int(f.read())
+    #     print("Tiếp tục huấn luyện model!!")
+    # except FileNotFoundError:
+    #     print("Không tìm thấy model!! Huấn luyện lại từ đầu!!!")
     while True:
         done = False
         while not done:

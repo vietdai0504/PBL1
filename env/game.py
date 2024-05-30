@@ -34,7 +34,6 @@ class SnakeGameAI:
         self.clock = pygame.time.Clock()
         self.reset()
 
-
     def reset(self):
 
         self.direction = Direction.RIGHT
@@ -113,6 +112,7 @@ class SnakeGameAI:
 
         for pt in self.snake:
             pygame.draw.rect(self.display, YELLOW, pygame.Rect(pt.x, pt.y, BLOCK_SIZE, BLOCK_SIZE))
+            pygame.draw.rect(self.display, BLUE1, pygame.Rect(self.snake[0].x+2, self.snake[0].y+2, BLOCK_SIZE - 4, BLOCK_SIZE - 4))
 
         pygame.draw.rect(self.display, RED, pygame.Rect(self.food.x, self.food.y, BLOCK_SIZE, BLOCK_SIZE))
 
