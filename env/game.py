@@ -74,14 +74,14 @@ class SnakeGameAI:
         game_over = False
         if self.is_collision() or self.frame_iteration > 100*len(self.snake):
             game_over = True
-            reward = -10
+            reward = - (20 - self.score/(self.score+20) * 20)
             if self.score >= self.record:
                 self.record = self.score
             return reward, game_over, self.score
 
         if self.head == self.food:
             self.score += 1
-            reward = 10
+            reward = 20
             self._place_food()
         else:
             self.snake.pop()

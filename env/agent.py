@@ -77,7 +77,7 @@ class Agent:
         states, actions, rewards, next_states, dones = zip(*mini_sample)
         self.trainer.train_step(states, actions, rewards, next_states, dones)
 
-    def train_short_memory(self, state, action, reward, next_state, done): # huấn luyện dựa trên một mẫu đơn lẻ
+    def train_short_memory(self, state, action, reward, next_state, done): # huấn luyện dựa trên một mẫu đơn lẻ, khi batch mẫu chưa đủ độ lớn
         self.trainer.train_step(state, action, reward, next_state, done)
 
     def get_action(self, state):
@@ -88,8 +88,8 @@ class Agent:
             final_move[move] = 1
         else:
             state0 = torch.tensor(state, dtype=torch.float)
-            prediction = self.model(state0)
-            move = torch.argmax(prediction).item()
+            prediction = self.model(state0) # tính toán tất cả giá trị Q của hành dộng ở state0
+            move = torch.argmax(prediction).item() #chọn hành động có Q cao nhất
             final_move[move] = 1
 
         return final_move
