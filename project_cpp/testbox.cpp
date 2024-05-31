@@ -78,26 +78,26 @@ void box(int x, int y, int w, int h, int t_color, int b_color, const string& nd)
     SetBackgroundColor(0);
 }
 
-void clearinfo()
+void clearinfo(int x, int y, int z)
 {
-	gotoXY(28 + 3, 3 + 2);
-	cout << left << setw(60) << " ";
-	gotoXY(28 + 3, 3 + 3);
-	cout << left << setw(60) << " ";
-	gotoXY(28 + 3, 3 + 4);
-	cout << left << setw(60) << " ";
-	gotoXY(28 + 3, 3 + 5);
-	cout << left << setw(60) << " ";
-	gotoXY(28 + 3, 3 + 6);
-	cout << left << setw(60) << " ";
-	gotoXY(28 + 3, 3 + 7);
-	cout << left << setw(60) << " ";
-	gotoXY(28 + 3, 3 + 8);
-	cout << left << setw(60) << " ";
-	gotoXY(28 + 3, 3 + 9);
-	cout << left << setw(60) << " ";
-	gotoXY(28 + 3, 3 + 10);
-	cout << left << setw(60) << " ";
+	gotoXY(x + 3, y + 2);
+	cout << left << setw(z) << " ";
+	gotoXY(x + 3, y + 3);
+	cout << left << setw(z) << " ";
+	gotoXY(x + 3, y + 4);
+	cout << left << setw(z) << " ";
+	gotoXY(x + 3, y + 5);
+	cout << left << setw(z) << " ";
+	gotoXY(x + 3, y + 6);
+	cout << left << setw(z) << " ";
+	gotoXY(x + 3, y + 7);
+	cout << left << setw(z) << " ";
+	gotoXY(x + 3, y + 8);
+	cout << left << setw(z) << " ";
+	gotoXY(x + 3, y + 9);
+	cout << left << setw(z) << " ";
+	gotoXY(x + 3, y + 10);
+	cout << left << setw(z) << " ";
 }
 
 
@@ -115,6 +115,26 @@ public:
 	int getid()
 	{
 		return masv;
+	}
+	void setname()
+	{
+		cout<<"Nhap ten: "; getline(cin,ten);
+	}
+	void setgioitinh()
+	{
+		cout<<"Nhap gioi tinh: "; cin>>gioitinh;
+	}
+	void setbirth()
+	{
+		cout<<"Nhap ngay sinh: "; cin>>ngaysinh;
+	}
+	void setphone()
+	{
+		cout<<"Nhap so dien thoai: "; cin>>sdt;
+	}
+	void setaddress()
+	{
+		cout<<"Nhap dia chi: "; getline(cin,diachi);
 	}
 	void getinfo(ifstream& fin)
 	{
@@ -139,33 +159,33 @@ public:
         getline(ss,hoanthanh,',');
 	}
 	
-	void displayinfo()
+	void displayinfo(int x, int y)
 	{  
-	    gotoXY(28 + 3, 3 + 2);
+	    gotoXY(x + 3, y + 2);
 	    cout << left << setw(20) << "MaSV" << "| " << masv << endl;
 	
-	    gotoXY(28 + 3, 3 + 3);
+	    gotoXY(x + 3, y + 3);
 	    cout << left << setw(20) << "TenSV" << "| " << ten << endl;
 	
-	    gotoXY(28 + 3, 3 + 4);
+	    gotoXY(x + 3, y + 4);
 	    cout << left << setw(20) << "Gioi tinh " << "| " << gioitinh<< endl;
 	
-	    gotoXY(28 + 3, 3 + 5);
+	    gotoXY(x + 3, y + 5);
 	    cout << left << setw(20) << "Ngay sinh " << "| " << ngaysinh << endl;
 	
-	    gotoXY(28 + 3, 3 + 6);
+	    gotoXY(x + 3, y + 6);
 	    cout << left << setw(20) << "Lop " << "| " << lop << endl;
 	
-	    gotoXY(28 + 3, 3 + 7);
+	    gotoXY(x + 3, y + 7);
 	    cout << left << setw(20) << "Khoa " << "| " << khoa << endl;
 	
-	    gotoXY(28 + 3, 3 + 8);
-	    cout << left << setw(20) << "SDT " << "| " << endl;
+	    gotoXY(x + 3, y + 8);
+	    cout << left << setw(20) << "SDT " << "| " << sdt << endl;
 	
-	    gotoXY(28 + 3, 3 + 9);
+	    gotoXY(x + 3, y + 9);
 	    cout << left << setw(20) << "Dia chi " << "| " << endl;
 	
-	    gotoXY(28 + 3, 3 + 10);
+	    gotoXY(x + 3, y + 10);
 	    cout << left << setw(20) << "GPA " << "| " << endl;
 	}
 };
@@ -188,6 +208,9 @@ public:
 		}
 	}
 	
+	void editInfo();
+	void clearInfo();
+	
 	void display() {
 		Nocursortype();
 		Sinhvien sv;
@@ -202,13 +225,13 @@ public:
 			SetColor(2);
 		    gotoXY(28 + 3, 3 + 1);
 		    cout << left << setw(20) << "STT" << "| " << i + 1 << endl;
-		    clearinfo();
-		    list[i].displayinfo();
+		    clearinfo(50,3,20);
+		    list[i].displayinfo(28,3);
 		    box(75, 4, 13, 8, 5, 2, "");
 		    SetColor(3);
 		    gotoXY(75 + 4,8);
 		    cout<<"Image";
-		    gotoXY(28 + 1, 15);
+		    gotoXY(28 + 2, 15);
 		    cout<< i + 1 << "\\" << n - 1 << ", chua dang nhap, dang nhap de xem toan bo thong tin!";
 		    char phim = getch();
 		
@@ -326,6 +349,9 @@ void option(DSSV sv)
 			case 1:
 				sv.display();
 				break;
+			case 2:
+				sv.editInfo();
+				break;
 			case 9:
 				return;
 		}
@@ -337,10 +363,165 @@ int main() {
     ifstream fin("info.csv");
     DSSV sv;
     sv.getFullInfo(fin);
-    ifstream logout("banner.txt");
-    string str;
-    while (logout >> str)
-    	cout<<str << endl;
-//    option(sv);
+//    sv.editInfo();
+    option(sv);
     return 0;
+}
+
+void DSSV::editInfo()
+{
+	system("cls");
+	Nocursortype();
+//	Showcursor();
+	int current = 0, select, luachon = 1, soluongluachon = 6;
+	bool check = false;
+	box(5, 1, 40, 20, 4, 1, "");
+	box(50, 3, 65, 15, 2, 8, "");
+	box(97, 7, 13, 8, 5, 2, "");
+	SetColor(3);
+	gotoXY(97 + 4,11);
+	cout<<"Image";
+	//list[0].displayinfo(50,5);
+	gotoXY(13,3);
+	cout<<"Thong tin muon chinh sua";
+	string a[7] = {"","Ten","Ngay sinh", "Gioi tinh","SDT", "Dia chi","Tro lai"};
+	int i = 0;
+	bool running = true;
+	while (running)
+	{
+		system("cls");
+		Nocursortype();
+	//	Showcursor();
+		int current = 0, select, luachon = 1, soluongluachon = 6;
+		bool check = false;
+		box(5, 1, 40, 20, 4, 1, "");
+		box(50, 3, 65, 15, 2, 8, "");
+		box(97, 7, 13, 8, 5, 2, "");
+		SetColor(3);
+		gotoXY(97 + 4,11);
+		cout<<"Image";
+		//list[0].displayinfo(50,5);
+		gotoXY(13,3);
+		cout<<"Thong tin muon chinh sua";
+		string a[7] = {"","Ten","Ngay sinh", "Gioi tinh","SDT", "Dia chi","Tro lai"};
+		check = false;
+		while (!check) {
+			SetColor(2);
+			clearinfo(72,3,20);
+			gotoXY(50 + 3, 5 + 1);
+			cout << left << setw(20) << "STT" << "| " << i + 1 << endl;
+			list[i].displayinfo(50,5);
+			gotoXY(53+ 1, 17);
+			cout<< i + 1 << "\\" << n - 1 << ", chua dang nhap, dang nhap de xem toan bo thong tin!";
+			char phim = getch();
+			if (phim == 'q')
+			{
+				running = false;
+				break;
+			}
+			switch (phim) {
+			    case 75:
+			      	gotoXY(50+3,5+1);
+			        i--;
+			        if (i < 0) {
+			          i = n - 2;
+			        }
+			        break;
+			    case 77: 
+			        i++;
+			        if (i >= n - 1) {
+			          i = 0;
+			        }
+			        break;
+				case 13:
+			    	current = i;
+			    	check = true;
+			}
+		}
+		
+		while (check) {
+			SetColor(2);
+			list[current].displayinfo(50,5);
+			gotoXY(7,20);
+			cout<<"Mot so thong tin khong the chinh sua!!";
+			int start_x = 30, start_y = 6; 
+	        for (int i = 1; i <= soluongluachon; ++i) {
+	            gotoXY(start_x - 14, start_y + i + 1);
+	            if (i == luachon) {
+	            	SetColor(2);
+	                cout << "> ";
+	                SetBackgroundColor(1);
+	            } else {
+	                SetColor(2);
+	                cout << "  ";
+	            }
+	            cout << i << ". " <<a[i];
+	        }
+	        SetColor(2);
+	        gotoXY(start_x, start_y + soluongluachon + 3);
+	        char phim = getch();
+	        switch (phim) {
+	            case 72: // Phím mui tên lên
+	                luachon--;
+	                if (luachon < 1) {
+	                    luachon = soluongluachon;
+	                }
+	                break;
+	            case 80: // Phím mui tên xu?ng
+	                luachon++;
+	                if (luachon > soluongluachon) {
+	                    luachon = 1;
+	                }
+	                break;
+	            case 13:
+	                select = luachon;
+	                gotoXY(8,16);
+					switch(luachon)
+					{
+						case 1:
+							list[current].setname();
+							clearinfo(72,5,20);
+							gotoXY(8,16);
+							cout<<left<<setw(36)<<" ";
+							luachon = 1;
+							break;
+						case 2:
+							list[current].setbirth();
+							clearinfo(72,5,20);
+							gotoXY(8,16);
+							cout<<left<<setw(36)<<" ";
+							luachon = 1;
+							break;
+						case 3:
+							list[current].setgioitinh();
+							clearinfo(72,5,20);
+							gotoXY(8,16);
+							cout<<left<<setw(36)<<" ";
+							luachon = 1;
+							break;
+						case 4:
+							list[current].setphone();
+							clearinfo(72,5,20);
+							gotoXY(8,16);
+							cout<<left<<setw(36)<<" ";
+							luachon = 1;
+							break;
+						case 5:
+							list[current].setaddress();
+							clearinfo(72,5,20);
+							gotoXY(8,16);
+							cout<<left<<setw(36)<<" ";
+							luachon = 1;
+							break;
+						case 6:
+							system("cls");
+							check = false;
+							break;
+					}
+	            default:
+	                break;
+	        }
+		}
+	}
+	system("cls");	
 }
